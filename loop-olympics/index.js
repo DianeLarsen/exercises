@@ -82,24 +82,21 @@
 var arrayGrid = []
 
 for (let i = 0; i < 3; i++) {
+    arrayGrid[i] = [];
     for (let j = 0; j < 3; j++) {
-        arrayGrid.push(i)
+        arrayGrid[i][j] = j
         
     }
-    
-}
-//console.log(arrayGrid)
 
-for (let i = 0; i < arrayGrid.length; i++) {
-    for (let j = 0; j < arrayGrid[i].length; j++) {
-        arrayGrid[i][j] = "x";
-        
-    }
-    
 }
 console.log(arrayGrid)
-var sampleArrayGrid = [    [2, 2, 2],
-    [2, 2, 2],
-    [2, 2, 2],
-]
-console.log(sampleArrayGrid)
+
+ for (let i = 0; i < arrayGrid.length; i++) {
+     for (let j = 0; j < arrayGrid[i].length; j++) {
+         arrayGrid[i][j] = "x";
+        
+     }
+    
+ }
+ console.log(arrayGrid)
+ 
