@@ -13,60 +13,48 @@
 const readline = require("readline-sync");
 
 //const name = readline.question("What is your name? ");
-const options = [1, 2, 3]
-const choicePhrase = ["put your hand in a hole", "found the key", "open the door" ]
-let deaths = 0 
-
-let choices = readline.question('You are locked in an room, what would you like to do?'
+const options = [1, 2, 3];
+const choicePhrase = ["put your hand in a hole", "found the key", "open the door" ];
+let deaths = 0 ;
+let leave = false;
+let foundKey = false;
+const name = readline.question("What is your name?");
+console.log(name+ ", Welcome to the Escape Room Simulation!  You have 9 lives!");
+isDead = null
+while (leave == false){
+let choices = readline.keyIn( 
+  'You are locked in an room, what would you like to do?'
           +'\nOptions:'
           +'\n['+ options[0]+'] Put hand in hole'
           +'\n['+ options[1]+'] Find the key'
           +'\n['+ options[2]+'] Open the door\n'
-          + "Enter Choice:  ", 
-  
-  );
-  console.log(choices)
-   function redoChoices(){let choices = readline.question('You are still locked in an room, what would you like to do?'
-   +'\nOptions:'
-   +'\n['+ options[0]+'] Put hand in hole'
-   +'\n['+ options[1]+'] Find the key'
-   +'\n['+ options[2]+'] Open the door\n'
-   + "Enter Choice:  ", 
-   
- )}
- console.log(choices)
- if (choices == 1) {
-   console.log("You have "+choicePhrase[0]+ ", which has caused instant death.  Luckily you have been resureccted!");
-    deaths++
-   redoChoices()
- } else if (choices == 2) {
-   console.log(choicePhrase[1]);
-   gotKey()
- } else if (choices == 3) {
-    console.log("You attempt to open the door but see that is it locked");
-    redoChoices()
- } else {
-   console.log("This is not an option.");
-   redoChoices()
- }
-
- function gotKey(){let choices = readline.question('You are still locked in an room, what would you like to do?'
- +'\nOptions:'
- +'\n['+ options[0]+'] Put hand in hole'
-  +'\n['+ options[2]+'] Open the door\n'
- + "Enter Choice:  ", 
-
-)}
-
-function gotKeyIf(){if (choices == 1) {
-    console.log("You have "+choicePhrase[0]+ ", which has caused instant death.  Luckily you have been resureccted!");
-    deaths++
-    redoChoices()
-  } else if (choices == 3) {
-     console.log("As you have found the key you are now able to unlock the door and leave this room!  Congrats, you only died"+deaths+ "times.");
-     
-  } else {
-    console.log("This is not an option.");
-    redoChoices()
+          + "Enter Choice:  "  );
+  if (choices == 1 && deaths <= 9) {
+      console.log(name+", you have "+choicePhrase[0]+ ", which has caused instant death.  Luckily you have been resureccted!");
+      deaths++
+    } else if (choices == 1 && deaths == 9) {
+      console.log(name+", you have died "+deaths+" times!  GAME OVER"); 
+      leave = true;
+    } else if (choices == 2 && foundKey == false) {
+      console.log(name+ ", you have found the key, now you can open the door.");
+      foundKey = true;
+    } else if (choices == 2 && foundKey == true) {
+      console.log(name+ ", you have already found a key, don't make this your summer home LEAVE! Head to the door!");
+    } else if (choices == 3 && foundKey == false) {
+      console.log(name+", you attempt to open the door but see that is it locked");
+    } else if (choices == 3 && foundKey == true) {
+      console.log(name+", you have unlocked the door and left the ESCAPE ROOM!  Congrats, you only died "+deaths+" times!"); 
+      leave = true;
+    } else {
+      console.log(name+", you made the wrong choice and/or have died "+deaths+" times!  GAME OVER!!");
+    break
   }
 }
+   
+
+
+ 
+
+
+
+
